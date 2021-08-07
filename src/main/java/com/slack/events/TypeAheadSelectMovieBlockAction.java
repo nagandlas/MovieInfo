@@ -23,6 +23,7 @@ import static com.slack.api.model.view.Views.view;
 
 public class TypeAheadSelectMovieBlockAction
 {
+    private static final Integer MIN_QUERY_LENGTH = 1;
     @Inject
     App app;
 
@@ -79,6 +80,7 @@ public class TypeAheadSelectMovieBlockAction
         plainTextObject.setText("Search Movie");
         externalSelectElement.setPlaceholder(plainTextObject);
         externalSelectElement.setActionId(MovieInfoConstants.TYPE_AHEAD_SELECT_MOVIE_ACTION.name());
+        externalSelectElement.setMinQueryLength(MIN_QUERY_LENGTH);
         return externalSelectElement;
     }
 }
