@@ -6,6 +6,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.cache.MovieCache;
 import com.slack.cache.Trie;
+import com.slack.component.MovieDetailsComponent;
 import com.slack.enums.MovieInfoConstants;
 
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ public class TypeAheadMovieTitleSuggestionsAction
     @Inject
     App app;
     @Inject
-    Trie trie;
+    MovieDetailsComponent movieDetailsComponent;
     @Inject
     MovieCache cache;
 
@@ -31,7 +32,7 @@ public class TypeAheadMovieTitleSuggestionsAction
     {
         BlockSuggestionResponse res = new BlockSuggestionResponse();
         List<Option> options = new ArrayList<>();
-        List<String> suggestions = trie.getRecommendations(prefix);
+        List<String> suggestions = movieDetailsComponent.getSuggestions(prefix);
         for (String movieName : suggestions)
         {
             Option option = new Option();
